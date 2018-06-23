@@ -1,0 +1,21 @@
+version: "2"
+services:
+  vernemq:
+    environment:
+      - DOCKER_VERNEMQ_LISTENER__MAX_CONNECTIONS=96000
+      - DOCKER_VERNEMQ_LISTENER__NR_OF_ACCEPTORS=100
+      - DOCKER_VERNEMQ_MAX_CLIENT_ID_SIZE=32
+      - DOCKER_VERNEMQ_MAX_MESSAGE_SIZE=524288
+      - DOCKER_VERNEMQ_PERSISTENT_CLIENT_EXPIRATION=1h
+      - DOCKER_VERNEMQ_PLUGINS__VMQ_ACL=on
+      - DOCKER_VERNEMQ_PLUGINS__VMQ_PASSWD=off
+      - DOCKER_VERNEMQ_ALLOW_ANONYMOUS=on
+      - DOCKER_VERNEMQ_MAX_ONLINE_MESSAGES=10000
+    image: erlio/docker-vernemq:1.3.0
+    ports:
+      - "1883:1883"
+    restart: always
+    ulimits:
+      nofile:
+        soft: 100000
+        hard: 100000

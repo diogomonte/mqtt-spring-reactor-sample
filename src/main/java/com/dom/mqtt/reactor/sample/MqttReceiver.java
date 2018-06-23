@@ -9,9 +9,7 @@ import reactor.core.publisher.Flux;
 @Service
 public class MqttReceiver {
 
-
     private IMqttClient mqttClient;
-
     private EmitterProcessor<MqttMessage> emitterProcessor;
 
     public MqttReceiver(IMqttClient mqttClient, EmitterProcessor<MqttMessage> emitterProcessor) {
